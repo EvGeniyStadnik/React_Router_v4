@@ -2,7 +2,7 @@ import React from 'react'
 import {
     BrowserRouter as Router,
     Route,
-    NavLink
+    Link
 } from 'react-router-dom'
 // console.log(BrowserRouter);
 import './App.css';
@@ -19,9 +19,8 @@ const Home = (props) => {
 
 const Links = () => (
     <nav>
-        <NavLink exact activeClassName="active" to="/">Home</NavLink>
-        <NavLink activeStyle={{color: 'green'}} to={{pathname: '/about'}}>About</NavLink>
-        <NavLink isActive={isActiveFunc} to='/contacts'>Contacts</NavLink>
+        <Link to="/?id=123">Home</Link>
+        <Link to={{pathname: '/', search: 'id=456'}}>About</Link>
     </nav>
 );
 
@@ -29,14 +28,13 @@ const App = () => (
     <Router>
         <div>
             <Links />
-            <Route exact path="/" component={Home}/>
-            <Route path="/about" render={() => <h1>About</h1>} />
-            <Route path="/:a(\d{2}-\d{2}-\d{4}):b(\.[a-z]+)" children={({match}) => (
-                match && <h1>
-                    Contacts: {match.params.a || 'Home'}<br />
-                    Subpage: {match.params.b || 'Contacts'}
-                    </h1>
-            )} />
+            <Route path="/" render={({match, location}) => (
+                <div>
+                    <p>root</p>
+                    <p>match: {JSON.stringify(match)}</p>
+                    <p>location: {JSON.stringify(location)}</p>
+                </div>
+            )}/>
         </div>
     </Router>
 );
