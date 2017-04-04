@@ -31,7 +31,12 @@ const App = () => (
             <Links />
             <Route exact path="/" component={Home}/>
             <Route path="/about" render={() => <h1>About</h1>} />
-            <Route path="/contacts" children={({match}) => match && <h1>Contacts</h1>} />
+            <Route path="/:asdf?/:zxcv?" children={({match}) => (
+                match && <h1>
+                    Contacts: {match.params.asdf || 'Home'}<br />
+                    Subpage: {match.params.zxcv || 'Contacts'}
+                    </h1>
+            )} />
         </div>
     </Router>
 );
