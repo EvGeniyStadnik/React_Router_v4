@@ -2,9 +2,15 @@ import React from 'react'
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    NavLink
 } from 'react-router-dom'
 // console.log(BrowserRouter);
+import './App.css';
+
+const isActiveFunc = (match, location) => {
+    console.log('match location', match, location);
+    return match;
+};
 
 const Home = (props) => {
     console.log(props);
@@ -13,9 +19,9 @@ const Home = (props) => {
 
 const Links = () => (
     <nav>
-        <Link to="/">Home</Link>
-        <Link to={{pathname: '/about'}}>About</Link>
-        <Link replace to='/contacts'>Contacts</Link>
+        <NavLink exact activeClassName="active" to="/">Home</NavLink>
+        <NavLink activeStyle={{color: 'green'}} to={{pathname: '/about'}}>About</NavLink>
+        <NavLink isActive={isActiveFunc} to='/contacts'>Contacts</NavLink>
     </nav>
 );
 
