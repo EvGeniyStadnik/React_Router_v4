@@ -2,7 +2,8 @@ import React from 'react'
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    Link,
+    Switch
 } from 'react-router-dom'
 // console.log(BrowserRouter);
 import './App.css';
@@ -19,8 +20,9 @@ const Home = (props) => {
 
 const Links = () => (
     <nav>
-        <Link to="/?id=123">Home</Link>
-        <Link to={{pathname: '/', search: 'id=456'}}>About</Link>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/contacts">Contacts</Link>
     </nav>
 );
 
@@ -28,14 +30,11 @@ const App = () => (
     <Router>
         <div>
             <Links />
-            <Route path="/" render={({match, location}) => (
-                <div>
-                    <p>root</p>
-                    <p>match: {JSON.stringify(match)}</p>
-                    <p>location: {JSON.stringify(location)}</p>
-                    <p>{new URLSearchParams(window.location.search).get('id')}</p>
-                </div>
-            )}/>
+            <Switch>
+                <Route exact path="/" render={() => <h1>Home</h1>}/>
+                <Route path="/about" render={() => <h1>About</h1>}/>
+                <Route render={() => <h1>Page not found</h1>}/>
+            </Switch>
         </div>
     </Router>
 );
