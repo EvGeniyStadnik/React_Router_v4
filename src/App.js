@@ -31,7 +31,7 @@ const App = () => (
             <Links />
             <Route exact path="/" component={Home}/>
             <Route path="/about" render={() => <h1>About</h1>} />
-            <Route path="/:a(\d+)/:b" children={({match}) => (
+            <Route path="/:a(\d{2}-\d{2}-\d{4}):b(\.[a-z]+)" children={({match}) => (
                 match && <h1>
                     Contacts: {match.params.a || 'Home'}<br />
                     Subpage: {match.params.b || 'Contacts'}
