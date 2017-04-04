@@ -33,6 +33,7 @@ const App = () => (
                     <p>root</p>
                     <p>match: {JSON.stringify(match)}</p>
                     <p>location: {JSON.stringify(location)}</p>
+                    <p>{new URLSearchParams(window.location.search).get('id')}</p>
                 </div>
             )}/>
         </div>
