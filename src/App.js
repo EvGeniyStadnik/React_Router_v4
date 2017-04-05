@@ -2,51 +2,34 @@ import React from 'react'
 import {
     BrowserRouter as Router,
     Route,
-    Link,
-    Switch
+    Link
 } from 'react-router-dom'
 // console.log(BrowserRouter);
 import './App.css';
 
-const isActiveFunc = (match, location) => {
-    console.log('match location', match, location);
-    return match;
-};
-
-const Home = (props) => {
-    console.log(props);
-    return <h1>Home</h1>
-};
-
-const Links = () => (
-    <nav>
-        <Link to="/home">Home</Link>
-        <Link to="/about">About</Link>
-        <Head />
-        <Content />
-    </nav>
+const Home = () => (
+    <h1>Home</h1>
 );
 
-const Head = ({match}) => (
-    <div className="head">
-        <Route path="/:page" render={({match}) => (
-            <h1>Header: {match.params.page}</h1>
-        )}/>
+const Menu = () => (
+    <div>
+        <h1>Menu</h1>
+        <Link to="/menu/food">Food</Link>
+        <Link to="/menu/drinks">Drinks</Link>
+        <Link to="/menu/sides">Sides</Link>
+        <Route
+            path="/menu/:section"
+            render={({match}) => <h2>{match.params.section}</h2>}/>
     </div>
 );
 
-const Content = ({match}) => (
-    <div className="content">
-        <Route path="/:page" render={({match}) => (
-            <p>Content: {match.params.page}</p>
-        )}/>
-    </div>
-);
-
-const App = () => (
+const App = (props) => (
     <Router>
         <div>
-            <Links />
+            <Link to="/">Home</Link>
+            <Link to="/menu">Menu</Link>
+            <Route exact path="/" component={Home} />
+            <Route path="/menu" component={Menu} />
         </div>
     </Router>
 );
