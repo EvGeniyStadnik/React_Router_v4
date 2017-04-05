@@ -22,6 +22,8 @@ const Links = () => (
     <nav>
         <Link to="/home">Home</Link>
         <Link to="/about">About</Link>
+        <Head />
+        <Content />
     </nav>
 );
 
@@ -45,8 +47,6 @@ const App = () => (
     <Router>
         <div>
             <Links />
-            <Head />
-            <Content />
         </div>
     </Router>
 );
