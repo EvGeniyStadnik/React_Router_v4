@@ -20,10 +20,8 @@ const Home = (props) => {
 
 const Links = () => (
     <nav>
-        <Link to="/">Home</Link>
+        <Link to="/home">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/contacts">Contacts</Link>
-        <Link to="/notexists">Link to not existing component</Link>
     </nav>
 );
 
@@ -31,12 +29,16 @@ const App = () => (
     <Router>
         <div>
             <Links />
-            <Switch>
-                <Route exact path="/" render={() => <h1>Home</h1>}/>
-                <Route path="/about" render={() => <h1>About</h1>}/>
-                <Route path="/contacts" render={() => <h1>Contacts</h1>}/>
-                <Route path="/:itemid" render={({match}) => <h1>Item: {match.params.itemid}</h1>}/>
-            </Switch>
+            <div className="head">
+                <Route path="/:page" render={({match}) => (
+                    <h1>Header: {match.params.page}</h1>
+                )}/>
+            </div>
+            <div className="content">
+                <Route path="/:page" render={({match}) => (
+                    <p>Content: {match.params.page}</p>
+                )}/>
+            </div>
         </div>
     </Router>
 );
