@@ -6,14 +6,15 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom'
-// console.log(BrowserRouter);
-import './App.css';
 
+import './App.css';
+const loggedin = true;
 const Links = () => (
     <div>
         <Link to="/">Home</Link>
         <Link to="/old/456">Old</Link>
         <Link to="/new/123">New</Link>
+        <Link to="/protected" >Protected</Link>
     </div>
 );
 
@@ -26,6 +27,11 @@ const App = () => (
             <Route path="/old/:str" render={({match}) => (
                 <Redirect to={`/new/${match.params.str}`}/>
             )} />
+            <Route path="/protected" render={() => (
+                loggedin
+                ? <h2>Welcome to the protected page</h2>
+                : <Redirect to="/new/Login"/>
+            )}/>
         </div>
     </Router>
 );
