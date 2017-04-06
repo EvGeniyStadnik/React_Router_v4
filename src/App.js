@@ -1,6 +1,7 @@
 import React from 'react'
 import {
     BrowserRouter,
+    HashRouter,
     Route,
     Link
 } from 'react-router-dom'
@@ -27,4 +28,10 @@ const BrowserRouterApp = () => (
     </BrowserRouter>
 );
 
-export default BrowserRouterApp;
+const HashRouterApp = () => (
+    <HashRouter hashType="slash">
+        <RouterLinks/>
+    </HashRouter>
+);
+
+export default HashRouterApp;
