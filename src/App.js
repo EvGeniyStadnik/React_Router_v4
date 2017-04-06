@@ -2,6 +2,7 @@ import React from 'react'
 import {
     BrowserRouter,
     HashRouter,
+    MemoryRouter,
     Route,
     Link
 } from 'react-router-dom'
@@ -33,5 +34,14 @@ const HashRouterApp = () => (
         <RouterLinks/>
     </HashRouter>
 );
+//url in Browser not changing
+const MemoryRouterApp = () => (
+    <MemoryRouter
+        initialEntries={['/', '/about']}
+        initialIndex={1} //1 - represents '/about'
+    >
+        <RouterLinks/>
+    </MemoryRouter>
+);
 
-export default HashRouterApp;
+export default MemoryRouterApp;
