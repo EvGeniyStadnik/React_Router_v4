@@ -1,48 +1,30 @@
 import React from 'react'
 import {
-    BrowserRouter as Router,
+    BrowserRouter,
     Route,
-    Link,
-    Prompt
+    Link
 } from 'react-router-dom'
 
 import './App.css';
 
-const Links = () => (
+const RouterLinks = () => (
     <div>
-        <Link to="/">Home</Link>
-        <Link to="/form">Form</Link>
+        <Link to={'/'}>Home</Link>
+        <Link to={'about'}>About</Link>
+        <Route exact path={'/'} render={() => <h1>Home</h1>} />
+        <Route path={'/about'} render={() => <h1>About</h1>} />
     </div>
 );
 
-const Home = () => (
-    <h2>Home</h2>
+const forceRefresh = () => {
+    console.log(new Date());
+    return false;
+};
+
+const BrowserRouterApp = () => (
+    <BrowserRouter forceRefresh={forceRefresh()}>
+        <RouterLinks/>
+    </BrowserRouter>
 );
 
-class Form extends React.Component{
-    state = {dirty: false};
-
-    setDirty = () => this.setState({dirty: true});
-    render(){
-        return (
-            <div>
-                <h1>Form</h1>
-                <input type="text" onInput={this.setDirty}/>
-                <Prompt when={this.state.dirty} message='You data will be lost'/>
-            </div>
-        )
-    }
-}
-
-const App = () => (
-    <Router>
-        <div>
-            <Links />
-            <Route exact path="/" component={Home}/>
-            <Route path="/form" component={Form} />
-        </div>
-    </Router>
-);
-
-export default App
-
+export default BrowserRouterApp;
